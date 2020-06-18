@@ -55,7 +55,8 @@ app.use(campgroundsRoute);
 app.use(commentRoute);
 //Schema
  seedDB();
-app.listen("1000",function()
+ var port = process.env.PORT || 1000;
+app.listen(port,function()
 {
     console.log("Yelp camp started!!!");
 }
