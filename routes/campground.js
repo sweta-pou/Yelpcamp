@@ -1,5 +1,5 @@
 require("dotenv").config();
-var key      = process.env.OCD;
+var key      = process.env.OCD_KEY;
 var express = require("express"),
     router  = express.Router(),
     camp    = require("../models/camp"),
