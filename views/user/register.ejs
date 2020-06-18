@@ -1,0 +1,64 @@
+<%- include("../partials/header") %>
+<div class="ui raised padded text container segment">
+     <h1 class="ui dividing center aligned header">Signup</h1>
+     <div class="ui basic container segment">
+       <div class="ui large form">
+      <form action="/register" method="POST">
+        <div class="field">
+           <label >Username</label> 
+           <input type="text" name="username" required>
+        </div>
+        <div class="field">
+            <label >Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="field">
+            <label >Phone Number</label>
+            <input type="tel" name="phoneNumber"required >
+        </div>
+        <div class="two fields">
+           <div class="field">
+                 <label >City</label>
+               <div class="ui search selection dropdown">
+                 <input type="hidden" name="city" required>
+                 <i class="dropdown icon"></i>
+                  <div class="default text">Select City</div>
+                  <div class="menu">
+                     <div class="item" >Biratnagar</div>
+                     <div class="item" >Kathmandu</div>
+                     <div class="item" >Pokhara</div>
+                     <div class="item" >Lumbini</div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                    <label >Gender</label>
+                <div class="ui search selection dropdown">
+                    <input type="hidden" name="gender" >
+                    <i class="dropdown icon"></i>
+                   <div class="default text">Select gender</div>
+                   <div class="menu">
+                     <div class="item" >Male</div>
+                      <div class="item" >Female</div>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <input type="radio" id="owner" name="category" value="owner">
+            <label for="owner">Camp owner</label>
+         <input type="radio" id="user" name="category" value="user">
+          <label for="user">User</label><br>
+          <div class="field">
+              <label >Enter code for admin:</label>
+            <input type="text" name="admin" placeholder="AdminCode">
+         </div>
+        
+         <button class="ui green button"> Signup</button> </br>
+         
+    </form>
+
+    </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Yelpcamp</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+       <link rel="stylesheet" href="/stylesheets/campgrounds.css">
+       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+   
+      </head>
+<body>
+  <nav class="navbar navbar-expand-lg ">
+    <a class="navbar-brand" href="/">Yelpcamp</a>
+    <a  class="nav-item nav-link" href="/campgrounds">Camps</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+      <span class="navbar-toggler-icon" > </span>
+    </button>
+  
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav ">
+        <% if(!currentUser){ %>
+          <li class="nav-item " >
+            <a class="nav-link " href="/login">Login</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link " href="/register">Sign up</a>
+          </li>
+          <% }else{ %>
+            <li class="nav-item">
+            <a class="nav-link">Signed in as <%= currentUser.username %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="/logout">log out</a>
+            </li>
+         <% } %>
+      </ul>
+    </div>
+  </nav>
+  <div class="ui container" id="message">
+    <% if(error && error.length >0) {  %>
+  <div class="ui  negative message">
+    <p><%= error %></p>
+
+  </div>
+  <% }else if(success && success.length >0) { %>
+    <div class="ui success message">
+  <p> <%= success %> </p>
+    </div>
+    <% } %>
+</div>
+
+    

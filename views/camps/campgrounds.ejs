@@ -1,0 +1,38 @@
+<%- include ("../partials/header") %>
+<link rel="stylesheet" href="campgrounds.css">
+<div class="container pt-3">
+<header class="jumbotron">
+  <div>
+    <h1>Welcome to the Yelpcamp</h1>
+    <a class="btn btn-primary"   href="/campgrounds/new">Add a new Campground</a>
+    <form action="/campgrounds" method="GET" id="fuzzy">
+      <div class="ui search">
+        <div class="ui icon input">
+          <input class="search" type="text" placeholder="Search campground" name="search">
+          <i class="search icon"></i>
+        </div>
+      </div>
+  </form>
+</header>
+<div>
+  <% if(noMatch !== undefined){ %>
+    <h2>No match found!try again</h2>
+    <%} %>
+</div>
+  <div class="row">
+     <% campgrounds.forEach(function(camps){ %>
+       <div class="col-lg-3 col-md-4">
+         <div class="img-thumbnail ">
+            <img src= "<%= camps.image %>" alt="...">
+         <div class="caption">
+         <h4><%= camps.name %></h4>
+         <a href="/campgrounds/<%= camps._id %>" class="btn btn-primary btn-sm">INFO</a>
+       </div> 
+      </div> 
+
+        </div>
+      <% }) %>
+  </div>
+</div>
+
+<%- include ("../partials/footer") %>

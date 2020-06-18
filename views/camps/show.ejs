@@ -1,0 +1,102 @@
+<%- include ("../partials/header") %>
+
+
+<div class="container mt-5">
+    <div class="ui grid">
+        <div class="four wide column ">
+         <h2>Yelp Camp</h2>
+         <div class=" fluid ui vertical buttons mt-3">
+            <button class=" ui button">Info 1</button>
+            <button class="ui button">Info 2</button>
+            <button class="ui button">Info 3</button>
+          </div> 
+          <div class=" ui container segment" id="mapid"></div>   
+        </div>
+        <div class="one wide column"> </div>
+        <div class="nine wide column">
+           <div class="ui container segment" id="show">
+               <p ><img src="<%= foundcamp.image %>" alt="" id="show"></p>
+                <div >
+                    <div>
+                        <h4 class="ui right aligned header">
+                          Rs.<%= foundcamp.price %>/night
+                        </h4>
+                        <h2 class="ui left aligned header">
+                          <%= foundcamp.name %>
+                        </h2>
+                    </div>
+                </div>
+                 <p class="description"><%= foundcamp.description %></p>
+                 <p><em>created by: <%= foundcamp.author.createrName %> </em> </p>
+                <% if((currentUser && foundcamp.author.id.equals(currentUser._id))||(currentUser&&currentUser.isAdmin)){ %>
+                 <a href="/campgrounds/<%=foundcamp._id %>/update"><button class="mini ui basic yellow button">Update</button></a>
+                 <form action="/campgrounds/<%=foundcamp._id %>?_method=DELETE" method="POST" id="delete-form">
+                  <button class="mini ui basic red button">delete</button>
+                 </form>
+                 <% } %>
+
+           </div>
+            <div class="ui  padded  container segment">
+            
+                  <div class="ui basic clearing segment">
+                    <a href="/campgrounds/<%=foundcamp._id %>/comments/new" ><button class="ui green right floated button">Add a new comment</button>
+                    </a>
+                  </div>
+                  <div class="row ">
+                      <div class="column">
+                        <% (foundcamp.comments).forEach(function(comment){ %>
+                          <div class="ui feed" >
+                          <div class="event">
+                            <div class="content">
+                              <div class="summary">
+                                <strong><%= comment.author.username %></strong>
+                             <div class="date">
+                              <%= moment(comment.author.date).fromNow() %>
+                            </div>
+                              </div>
+                            <div class="extra text">
+                              <%= comment.text %>
+                              </div>
+                              <% if( currentUser && comment.author.id.equals(currentUser._id)) { %>
+                              <a href="/campgrounds/<%=foundcamp._id %>/comments/<%= comment._id %>/edit"><button class="mini ui basic yello button">Edit</button></a>
+                              <form action="/campgrounds/<%=foundcamp._id %>/comments/<%= comment._id %>/delete?_method=DELETE" method="POST" id="delete-form">
+                               <button class=" mini ui red basic icon button" ><i class="trash alternate icon" ></i></button> 
+                              </form>
+                            <% } %>
+                            </div>
+                          </div>
+                        </div>
+                            
+                             <%  }) %>
+                      </div>
+                  </div>
+                    
+            </div>
+           </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+crossorigin=""></script>
+<script>
+  
+   var lat = <%=foundcamp.lat %> ;
+   var lng = <%=foundcamp.lng %>;
+  
+var mymap = L.map('mapid').setView([lat, lng], 13);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  maxZoom: 20,
+  id: 'mapbox/streets-v11',
+  tileSize: 512,
+  zoomOffset: -1,
+  accessToken: 'pk.eyJ1IjoicG91ZGVsIiwiYSI6ImNrYTliN2F2azA0ZG8ycnJ1aXB2endnNHAifQ.sO-8iQB-9W_dqVQEt5bGsA'
+}).addTo(mymap);
+var marker = L.marker([lat, lng]).addTo(mymap);
+//====popuup===
+marker.openPopup();
+circle.bindPopup("I am a circle.");
+polygon.bindPopup("I am a polygon.");
+</script>
+<%- include ("../partials/footer") %>

@@ -1,0 +1,87 @@
+nav.navbar
+{
+    background-color:rgb(102, 153, 153);
+    color: black;
+}
+a.navbar-brand,a.nav-link
+{
+    color: black;
+}
+img{
+    height: 220px;
+    width: 100%;
+}
+.caption
+{
+    text-align: center;
+}
+input.form-control
+{
+    width: 30%;
+}
+form p
+{
+    color: blue;
+}
+#don
+{
+    justify-content: center;
+    padding-left: 25%;
+}
+img#show 
+{
+    height:500px;
+    
+}
+div#show.ui.segment
+{
+    padding:0;
+}
+h2.ui.left.aligned.header,p.description
+{
+    padding: 5px;
+}
+button.ui.green.button
+{
+    margin-left:5px ;
+    margin-bottom: 5px;
+}
+h2.ui.left.aligned.header
+{
+    color: blue;
+}
+form#delete-form
+{
+    display: inline;
+}
+input
+{
+    
+    border: 1px solid grey;
+    margin-bottom: 20px;
+
+}
+.ui.raised.very.padded.text.container.segment
+{
+    width: 30%;
+    margin-top: 70px;
+    
+}
+
+div.ui.center.aligned.container
+{
+    padding-top: 30px;
+}
+#message
+{
+    margin-top: 20px;
+}
+/* Google Maps */
+#mapid {
+    height: 400px;
+    width: 100%;
+}
+#fuzzy
+{
+    margin-top: 10px;
+}
