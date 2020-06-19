@@ -14,7 +14,7 @@ var express = require("express"),
      
       // Optional depending on the providers
       httpAdapter: 'https',
-      apiKey: 'd79ffd6afdd8481a900cc85e461afd6b', // for Mapquest, OpenCage, Google Premier
+      apiKey: 'process.env.OCD_KEY', // for Mapquest, OpenCage, Google Premier
       formatter:null
     };
     var geocoder = NodegeoCoder(options);
