@@ -81,6 +81,8 @@ integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUT
 crossorigin=""></script>
 <script>
   // var token = process.env.Second_API;
+require("dotenv").config();
+
    var lat = <%=foundcamp.lat %> ;
    var lng = <%=foundcamp.lng %>;
 var mymap = L.map('mapid').setView([lat, lng], 13);
