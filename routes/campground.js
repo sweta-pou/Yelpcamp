@@ -7,7 +7,7 @@ var express = require("express"),
     user    = require("../models/user"),
     middleWare = require("../middleware"),
     NodegeoCoder = require("node-geocoder");
-    
+    console.log(process.env.OCD_KEY);
     
     var options = {
       provider: 'opencage',
