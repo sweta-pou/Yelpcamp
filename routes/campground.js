@@ -1,5 +1,5 @@
 require("dotenv").config();
-var key      = process.env.OCD_KEY;
+// var key      = process.env.OCD_KEY;
 var express = require("express"),
     router  = express.Router(),
     camp    = require("../models/camp"),
@@ -14,7 +14,7 @@ var express = require("express"),
      
       // Optional depending on the providers
       httpAdapter: 'https',
-      apiKey: key, // for Mapquest, OpenCage, Google Premier
+      apiKey: 'd79ffd6afdd8481a900cc85e461afd6b', // for Mapquest, OpenCage, Google Premier
       formatter:null
     };
     var geocoder = NodegeoCoder(options);
