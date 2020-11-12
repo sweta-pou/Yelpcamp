@@ -11,9 +11,9 @@ var express = require("express"),
     mailgun = require("mailgun-js"),
 
     NodegeoCoder = require("node-geocoder");
-const DOMAIN = 'sandboxa3928f419884477e89abb83324aacebb.mailgun.org';
+const DOMAIN = process.env.Domain;
 
-const mg = mailgun({apiKey: '2348b33424fcda7801295ddbec5c1aac-f135b0f1-74267248', domain: DOMAIN});
+const mg = mailgun({apiKey: process.env.Mailgun_API, domain: DOMAIN});
 
   const axios = require("axios");
     console.log(process.env.OCD_KEY);
@@ -23,7 +23,7 @@ const mg = mailgun({apiKey: '2348b33424fcda7801295ddbec5c1aac-f135b0f1-74267248'
      
       // Optional depending on the providers
       httpAdapter: 'https',
-      apiKey: 'd79ffd6afdd8481a900cc85e461afd6b', // for Mapquest, OpenCage, Google Premier
+      apiKey: process.env.OCD_KEY, // for Mapquest, OpenCage, Google Premier
       formatter:null
     };
     var geocoder = NodegeoCoder(options);
@@ -116,7 +116,7 @@ router.get("/campgrounds/:id", async function(req,res)
   var foundcamp = await camp.findById(req.params.id).populate("comments").exec();
   if(foundcamp != undefined)
   {
-    res.render("camps/show",{foundcamp:foundcamp,Second_API:process.env.Second_API});
+    res.render("camps/show",{foundcamp:foundcamp,Second_API: process.env.Second_API});
   }
   else
   {

@@ -5,7 +5,7 @@ var TokenSchema = new mongoose.Schema({
     ref:"User"
 },
 token: { type: String, required: true },
-createdAt: { type: Date, required: true,expires: 120, default: Date.now,  }
+createdAt: { type: Date, required: true,expires: 900, default: Date.now,  }
 
 });
 // TokenSchema.index({createdAt: 1},{expireAfterSeconds:120});

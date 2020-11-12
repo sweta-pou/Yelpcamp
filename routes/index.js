@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express    = require("express"),
      router    = express.Router(),
        user    =require("../models/user"),
@@ -10,8 +12,8 @@ var express    = require("express"),
 
 
 
-const DOMAIN = 'sandboxa3928f419884477e89abb83324aacebb.mailgun.org';
-const mg = mailgun({apiKey: '2348b33424fcda7801295ddbec5c1aac-f135b0f1-74267248', domain: DOMAIN});
+const DOMAIN = process.env.Domain;
+const mg = mailgun({apiKey: process.env.Mailgun_API, domain: DOMAIN});
 router.get("/",function(req,res)
 {
     res.render("landing");
