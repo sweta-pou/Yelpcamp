@@ -116,7 +116,7 @@ router.get("/campgrounds/:id", async function(req,res)
   var foundcamp = await camp.findById(req.params.id).populate("comments").exec();
   if(foundcamp != undefined)
   {
-    res.render("camps/show",{foundcamp:foundcamp});
+    res.render("camps/show",{foundcamp:foundcamp,Second_API:process.env.Second_API});
   }
   else
   {
