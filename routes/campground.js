@@ -11,9 +11,9 @@ var express = require("express"),
     mailgun = require("mailgun-js"),
 
     NodegeoCoder = require("node-geocoder");
-const DOMAIN = process.env.Domain;
+const DOMAIN = process.env.DOMAIN;
 
-const mg = mailgun({apiKey: process.env.Mailgun_API, domain: DOMAIN});
+const mg = mailgun({apiKey: process.env.MAILGUN_API, domain: DOMAIN});
 
   const axios = require("axios");
     console.log(process.env.OCD_KEY);
@@ -116,7 +116,7 @@ router.get("/campgrounds/:id", async function(req,res)
   var foundcamp = await camp.findById(req.params.id).populate("comments").exec();
   if(foundcamp != undefined)
   {
-    res.render("camps/show",{foundcamp:foundcamp,Second_API: process.env.Second_API});
+    res.render("camps/show",{foundcamp:foundcamp,Second_API: process.env.SECOND_API});
   }
   else
   {

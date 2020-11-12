@@ -12,8 +12,8 @@ var express    = require("express"),
 
 
 
-const DOMAIN = process.env.Domain;
-const mg = mailgun({apiKey: process.env.Mailgun_API, domain: DOMAIN});
+const DOMAIN = process.env.DOMAIN;
+const mg = mailgun({apiKey: process.env.MAILGUN_API, domain: DOMAIN});
 router.get("/",function(req,res)
 {
     res.render("landing");
