@@ -20,10 +20,8 @@ var campgroundsRoute = require("./routes/campground"),
     indexRoute = require("./routes/index");
 const axios = require("axios");
 mongoose.connect(process.env.DATABASE,{ useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex:true });
-// mongoose.connect("mongodb+srv://sweta:poudel@cluster0-5clax.mongodb.net/webDevelopment?retryWrites=true&w=majority",{ useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex:true });
 
 mongoose.set('useFindAndModify', false);
-//mongodb+srv://sweta:poudel@cluster0-5clax.mongodb.net/webDevelopment?retryWrites=true&w=majority
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParsor.urlencoded({extended:true}));
