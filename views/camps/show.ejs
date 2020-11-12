@@ -1,11 +1,9 @@
 <%- include ("../partials/header") %>
+<a href="/campground/<%=foundcamp._id %>/booking"><button class="ui  green button ml-5">Booking Info</button></a>
+
 <div class="row">
   <div class="col-md-3 ml-5">
-    <div class=" fluid ui vertical buttons mt-3 ">
-      <button class=" ui button">Info 1</button>
-      <button class="ui button">Info 2</button>
-      <button class="ui button">Info 3</button>
-    </div> 
+      <!-- <button class=" btn btn-primary" id="payment-button">Pay with khalti</button> -->
       <div id="mapid"></div>
   </div>
  <div class="col-md-6 ml-5">
@@ -76,7 +74,6 @@
 </div>
 </div>
 </div>
-
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
 integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
 crossorigin=""></script>
@@ -98,7 +95,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 var marker = L.marker([lat, lng]).addTo(mymap);
 //====popuup===
 marker.openPopup();
-circle.bindPopup("I am a circle.");
-polygon.bindPopup("I am a polygon.");
+// circle.bindPopup("I am a circle.");
+// polygon.bindPopup("I am a polygon.");
 </script>
+  
 <%- include ("../partials/footer") %>

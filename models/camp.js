@@ -8,6 +8,11 @@ var campSchema = new mongoose.Schema({
     lat:Number,
     lng:Number,
     description:String,
+    secreteKey:String,
+    publicKey:String,
+    Owner_name:String,
+    Owner_email:String,
+    Owner_contact:Number,
     author:{
         id:{
             type:mongoose.Schema.Types.ObjectId,

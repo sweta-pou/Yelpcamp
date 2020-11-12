@@ -1,0 +1,15 @@
+<%- include("../partials/header") %>
+
+<div class="ui raised  padded text container segment">
+    <h1 class="ui dividing center aligned header">email confirmation</h1>
+    <div class=" ui center aligned container">
+        <form action="/confirmation" method="POST">
+            <div >
+              <label>Email</label> 
+            <input type="email" name="email" >
+            </div>
+            <button class="ui green button">Send</button>
+        </form>
+    </div>   
+</div>
+<%- include("../partials/footer") %>

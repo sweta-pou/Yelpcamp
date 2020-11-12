@@ -7,6 +7,8 @@ var userSchema = new mongoose.Schema(
     phoneNumber:Number,
     city:String,
     gender:String,
+    isverified:{type:Boolean,default:false},
+    email:{type:String,unique:true},
     isOwner:{type:Boolean,default:false},
     isAdmin:{type:Boolean,default:false}
 }

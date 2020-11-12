@@ -1,6 +1,8 @@
-var comment= require("../models/comment")
-    camp   = require("../models/camp"),
-    user = require("../models/user");
+var comment= require("../models/comment");
+const passport = require("passport");
+const user = require("../models/user"),
+    camp   = require("../models/camp");
+ 
      
 var middleWare = {}
 
@@ -71,5 +73,5 @@ middleWare.CheckCurrentUser = function(req,res,next){
             res.redirect("back");
         }
     }
-        
+
 module.exports= middleWare;

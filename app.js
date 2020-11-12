@@ -18,7 +18,7 @@ var express = require("express"),
 var campgroundsRoute = require("./routes/campground"),
     commentRoute = require("./routes/comment"),
     indexRoute = require("./routes/index");
-
+const axios = require("axios");
 mongoose.connect(process.env.DATABASE,{ useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex:true });
 // mongoose.connect("mongodb+srv://sweta:poudel@cluster0-5clax.mongodb.net/webDevelopment?retryWrites=true&w=majority",{ useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex:true });
 
@@ -56,6 +56,7 @@ app.use(commentRoute);
 //Schema
  seedDB();
  var port = process.env.PORT || 1000;
+ 
 app.listen(port,function()
 {
     console.log("Yelp camp started!!!");
