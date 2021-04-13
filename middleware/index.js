@@ -29,8 +29,12 @@ middleWare.CommentUserCheck= function(req,res,next)
 middleWare.isLoggedIn = function(req,res,next) 
 {
     if(req.isAuthenticated())
-    {
+    {  console.log("authhhh")
+       if(req.user.isverified)
+       {
         return next();
+
+       }
     }
     req.flash("error","please login first");
    res.redirect("/login");

@@ -13,6 +13,7 @@ var campSchema = new mongoose.Schema({
     Owner_name:String,
     Owner_email:String,
     Owner_contact:Number,
+    payment:{type:Boolean,default:false},
     author:{
         id:{
             type:mongoose.Schema.Types.ObjectId,
