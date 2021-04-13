@@ -9,14 +9,14 @@ var express = require("express"),
     middleWare = require("../middleware"),
     token = require("../models/token"),
     mailgun = require("mailgun-js"),
-
     NodegeoCoder = require("node-geocoder");
+    
 const DOMAIN = process.env.DOMAIN;
 
 const mg = mailgun({apiKey: process.env.MAILGUN_API, domain: DOMAIN});
 
   const axios = require("axios");
-    console.log(process.env.OCD_KEY);
+const { constants } = require("crypto");
     
     var options = {
       provider: 'opencage',
@@ -27,6 +27,14 @@ const mg = mailgun({apiKey: process.env.MAILGUN_API, domain: DOMAIN});
       formatter:null
     };
     var geocoder = NodegeoCoder(options);
+
+    //images location to temporarily store files in server
+
+//upload credentials for cloudinary 
+// after login present in dash board
+
+//Middle ware
+
 router.get("/campgrounds",function(req,res)
 { 
 if(req.query.search)
@@ -65,7 +73,7 @@ else
 router.post("/campgrounds",middleWare.isLoggedIn,  function(req,res)
 {
   var name = req.body.Name;
-  var image = req.body.campUrl;
+  var image=req.body.image;
   var description = req.body.description;
   var createrName = req.user.username;
   var id = req.user._id;
@@ -76,6 +84,7 @@ var publicKey = req.body.KhaltiPublic;
 var Owner_name = req.body.OwnerName;
 var Owner_email = req.body.Email;
 var Owner_contact = req.body.ContactNumber;
+
   var author ={id:id,createrName:createrName};
   geocoder.geocode(req.body.location, function(err, data){
     if(err || !data.length){
@@ -85,11 +94,10 @@ var Owner_contact = req.body.ContactNumber;
    console.log(data);
      var lat = data[0].latitude;
       var lng  =  data[0].longitude;
-      
-    console.log(location);
-    console.log(lat);
-    console.log(lng);
-  var newCampground = {name: name, image: image,description:description, author:author,price:price,lat:lat,lng:lng,location:location,secreteKey:secreteKey,publicKey:publicKey,Owner_contact:Owner_contact,Owner_email:Owner_email,Owner_name:Owner_name};
+      if(secreteKey!=' ' && publicKey!=''){
+        payment ='true';
+      }
+  var newCampground = {name: name, image: image,description:description,author:author,price:price,lat:lat,lng:lng,location:location,secreteKey:secreteKey,publicKey:publicKey,Owner_contact:Owner_contact,Owner_email:Owner_email,Owner_name:Owner_name};
   camp.create(newCampground,function(err,camp)
   {
       if (err)
@@ -98,17 +106,16 @@ var Owner_contact = req.body.ContactNumber;
       }
       else
       { console.log(camp);
-        res.redirect("/campgrounds");
+        
+        res.redirect('/campgrounds');
 
       }
   })
-    
 });
-
 }) ;
 router.get("/campgrounds/new",middleWare.isLoggedIn,middleWare.checkOwnership,function(req,res)
 {
-    res.render("camps/new");
+    res.render("camps/new",{currentUser:req.user});
 }
 );
 router.get("/campgrounds/:id", async function(req,res)
@@ -116,7 +123,7 @@ router.get("/campgrounds/:id", async function(req,res)
   var foundcamp = await camp.findById(req.params.id).populate("comments").exec();
   if(foundcamp != undefined)
   {
-    res.render("camps/show",{foundcamp:foundcamp,Second_API: process.env.SECOND_API});
+    res.render("camps/show",{foundcamp:foundcamp,Second_API: process.env.SECOND_API,currentUser:req.user});
   }
   else
   {
@@ -132,7 +139,7 @@ router.get("/campgrounds/:id/update",middleWare.CheckCurrentUser,function(req,re
 {   
     camp.findById(req.params.id,function(err,UpdateCamp)
     {   
-      res.render("camps/update",{UpdateCamp:UpdateCamp});
+      res.render("camps/update",{UpdateCamp:UpdateCamp,currentUser:req.user});
     }
     )
 }
@@ -191,7 +198,7 @@ router.get("/campground/:id/booking",middleWare.isLoggedIn,function(req,res)
     else
     {
 
-      res.render("camps/payment",{foundcamp:foundcamp});
+      res.render("camps/payment",{foundcamp:foundcamp,currentUser:req.user});
 
     }
   }

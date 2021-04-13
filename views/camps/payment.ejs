@@ -2,7 +2,8 @@
 
 <div class="ui very padded text container segment">
     <div class="header">
-   <h2>Onwer Info:</h2>
+        
+   <h2>Owner Info:</h2>
     </br>
     </div>
     <div class="content">
@@ -11,7 +12,8 @@
     <p>Email: <%= foundcamp.Owner_email %></p>
     <p>phone:<%= foundcamp.Owner_contact %></p>
     </div>
-    <div class="ui horizontal divider">
+    <% if(foundcamp.payment){ %>
+        <div class="ui horizontal divider">
         Or
       </div>
     <div class="content">
@@ -19,6 +21,8 @@
 <button  class=" ui basic red button" id="payment-button">Pay with Khalti</button>
 
     </div>
+    <% } %> 
+    
 </div>
 
 
@@ -66,7 +70,7 @@
     var btn = document.getElementById("payment-button");
     btn.onclick = function () {
         // minimum transaction amount must be 10, i.e 1000 in paisa.
-        checkout.show({amount: 2000});
+        checkout.show({amount: <%=foundcamp.price %>*100});
     }
 </script>
 </body>
