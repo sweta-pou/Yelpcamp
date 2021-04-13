@@ -70,7 +70,7 @@ user.findOne({email:req.body.email},function(err,users)
                                 from: 'yelpcamp@campground.com',
                                 to: req.body.email,
                                 subject: 'Yelpcamp Verification',
-                                html:`Hello,<br> Please Click on the link to verify your email.<br> <a href="https://fierce-forest-74466.herokuapp.com/?verify=${token}">click here</a>`
+                                html:`Hello,<br> Please Click on the link to verify your email.<br> <a href="https://fierce-forest-74466.herokuapp.com/verification?verify=${token}">click here</a>`
                             };
                             mg.messages().send(data, function (error, body) {
                                 console.log(body);
