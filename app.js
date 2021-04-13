@@ -14,7 +14,8 @@ var express = require("express"),
       seedDB = require("./seeds");
       var moment = require('moment');
       app.locals.moment = moment;
-
+      const path = require('path');
+      const fileupload = require('express-fileupload');
 var campgroundsRoute = require("./routes/campground"),
     commentRoute = require("./routes/comment"),
     indexRoute = require("./routes/index");
@@ -22,6 +23,11 @@ const axios = require("axios");
 mongoose.connect(process.env.DATABASE,{ useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex:true });
 
 mongoose.set('useFindAndModify', false);
+var images = path.join(__dirname+'/images');
+app.use(fileupload({
+    useTempFiles: true,
+    tempFileDir: images
+  }));
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParsor.urlencoded({extended:true}));
@@ -42,7 +48,18 @@ passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 app.use(function(req,res,next)
 {
-    res.locals.currentUser = req.user;
+    console.log(req.user);
+    if(req.user)
+    {
+        console.log(req.user.isverified);
+        if(req.user.isverified){
+            res.locals.currentUser = req.user;
+
+        }
+
+    }
+    res.locals.currentUser = null;
+
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();
