@@ -91,7 +91,7 @@ var Owner_contact = req.body.ContactNumber;
       if(secreteKey!=' ' && publicKey!=''){
         payment ='true';
       }
-  var newCampground = {name: name, image: image,description:description,author:author,price:price,lat:lat,lng:lng,location:location,secreteKey:secreteKey,publicKey:publicKey,Owner_contact:Owner_contact,Owner_email:Owner_email,Owner_name:Owner_name};
+  var newCampground = {name: name, image: image,description:description,payment:payment,author:author,price:price,lat:lat,lng:lng,location:location,secreteKey:secreteKey,publicKey:publicKey,Owner_contact:Owner_contact,Owner_email:Owner_email,Owner_name:Owner_name};
   camp.create(newCampground,function(err,camp)
   {
       if (err)
