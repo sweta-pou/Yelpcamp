@@ -28,12 +28,6 @@ const { constants } = require("crypto");
     };
     var geocoder = NodegeoCoder(options);
 
-    //images location to temporarily store files in server
-
-//upload credentials for cloudinary 
-// after login present in dash board
-
-//Middle ware
 
 router.get("/campgrounds",function(req,res)
 { 
