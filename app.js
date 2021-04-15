@@ -21,7 +21,6 @@ var campgroundsRoute = require("./routes/campground"),
     indexRoute = require("./routes/index");
 const axios = require("axios");
 mongoose.connect(process.env.DATABASE,{ useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex:true });
-
 mongoose.set('useFindAndModify', false);
 var images = path.join(__dirname+'/images');
 app.use(fileupload({
