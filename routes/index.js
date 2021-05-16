@@ -41,10 +41,6 @@ user.findOne({email:req.body.email},function(err,users)
     }
     else
     {
-        //  const id=Math.floor((Math.random() * 100) + 54);
-        //  const hostes = req.get('host');
-        
-        
             var  newUser = new user({username:username,phoneNumber:phoneNumber,city:city,gender:gender,email:email});
             if(req.body.admin ==="shaha")
             {
@@ -91,11 +87,6 @@ user.findOne({email:req.body.email},function(err,users)
 });
 router.get("/verification",function(req,res)
 {
-    // console.log(req.protocol);
-    // console.log(hostes);
-    // console.log(req.protocol+":/"+req.get('host'));
-    // console.log(req.query);
-    // console.log(id);
    console.log(req.query.verify);
     token.findOne({token:req.query.verify},function(err,Token)
     {
