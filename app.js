@@ -10,8 +10,8 @@ var express = require("express"),
      camp = require("./models/camp"),
      comment = require("./models/comment"),
      user = require("./models/user"),
-    methodOverride = require("method-override"),
-      seedDB = require("./seeds");
+    methodOverride = require("method-override");
+    //   seedDB = require("./seeds");
       var moment = require('moment');
       app.locals.moment = moment;
       const path = require('path');
@@ -68,7 +68,7 @@ app.use(indexRoute);
 app.use(campgroundsRoute);
 app.use(commentRoute);
 //Schema
- seedDB();
+//  seedDB();
  var port = process.env.PORT || 1000;
  
 app.listen(port,function()
